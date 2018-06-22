@@ -4,7 +4,9 @@ package org.example;
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 
 class StringsAreEvilTests {
 
@@ -32,17 +35,14 @@ class StringsAreEvilTests {
         results.forEach(System.out::println);
     }
 
-    @Test
-    void baseline() {
-        doWork(new BaselineParser(), "Baseline");
+    private static Stream<Arguments> getArguments() {
+        return Stream.of(Arguments.of(new BaselineParser(), "Baseline"),
+                Arguments.of(new EW1Parser(), "Easy Win 1"));
     }
 
-    @Test
-    void easyWin1() {
-        doWork(new EW1Parser(), "Easy Win 1");
-    }
-
-    private void doWork(LineParser lineParser, String type) {
+    @ParameterizedTest
+    @MethodSource("getArguments")
+    void doWork(LineParser lineParser, String type) {
         BufferedReader bufferedReader;
         try {
             bufferedReader = new BufferedReader(new InputStreamReader(file));
