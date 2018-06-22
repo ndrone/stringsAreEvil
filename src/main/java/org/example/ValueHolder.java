@@ -9,8 +9,10 @@ class ValueHolder {
     private Double value;
 
     ValueHolder(String line) {
-        String[] parts = line.split(",");
+        this(line.split(","));
+    }
 
+    ValueHolder(String[] parts) {
         elementId = Integer.valueOf(parts[1]);
         vehicleId = Integer.valueOf(parts[2]);
         term = Integer.valueOf(parts[3]);

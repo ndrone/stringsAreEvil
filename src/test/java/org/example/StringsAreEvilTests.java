@@ -3,7 +3,7 @@ package org.example;
 
 import org.apache.commons.lang3.time.StopWatch;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
@@ -18,12 +18,12 @@ class StringsAreEvilTests {
 
     private static final long KILOBYTE = 1024L;
 
-    private static InputStream file;
+    private InputStream file;
 
     private static List<String> results = new ArrayList<>();
 
-    @BeforeAll
-    static void setup() {
+    @BeforeEach
+    void init() {
         file = Thread.currentThread().getContextClassLoader().getResourceAsStream("strings.txt");
     }
 
@@ -34,10 +34,15 @@ class StringsAreEvilTests {
 
     @Test
     void baseline() {
-        doWork(file, new BaselineParser(), "Baseline");
+        doWork(new BaselineParser(), "Baseline");
     }
 
-    private void doWork(InputStream file, LineParser lineParser, String type) {
+    @Test
+    void easyWin1() {
+        doWork(new EW1Parser(), "Easy Win 1");
+    }
+
+    private void doWork(LineParser lineParser, String type) {
         BufferedReader bufferedReader;
         try {
             bufferedReader = new BufferedReader(new InputStreamReader(file));
