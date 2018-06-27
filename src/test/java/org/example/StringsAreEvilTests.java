@@ -42,7 +42,8 @@ class StringsAreEvilTests {
                 Arguments.of(new NoSplitParser(), "No Line Split"),
                 Arguments.of(new NoListParser(), "No List"),
                 Arguments.of(new ParserWithByteArray(), "byte[]"),
-                Arguments.of(new ParserWithByteArray2(), "byte[] 2"));
+                Arguments.of(new ParserWithByteArray2(), "byte[] 2"),
+                Arguments.of(new ParserSubString(), "sub string"));
     }
 
     @ParameterizedTest
