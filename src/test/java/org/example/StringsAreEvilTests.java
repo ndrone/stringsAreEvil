@@ -40,7 +40,8 @@ class StringsAreEvilTests {
                 Arguments.of(new EW1Parser(), "Easy Win 1"),
                 Arguments.of(new EW2Parser(), "Easy Win 2"),
                 Arguments.of(new NoSplitParser(), "No Line Split"),
-                Arguments.of(new NoListParser(), "No List"));
+                Arguments.of(new NoListParser(), "No List"),
+                Arguments.of(new ParserWithByteArray(), "byte[]"));
     }
 
     @ParameterizedTest
