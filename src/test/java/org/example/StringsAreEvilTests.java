@@ -44,7 +44,8 @@ class StringsAreEvilTests {
                 Arguments.of(new ParserWithByteArray(), "byte[]"),
                 Arguments.of(new ParserWithByteArray2(), "byte[] 2"),
                 Arguments.of(new ParserSubString(), "sub string"),
-                Arguments.of(new ParserRegex(), "Regex"));
+                Arguments.of(new ParserRegex(), "Regex"),
+                Arguments.of(new ParserRegex2(), "Regex 2"));
     }
 
     @ParameterizedTest
