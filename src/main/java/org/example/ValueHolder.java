@@ -19,4 +19,12 @@ class ValueHolder {
         mileage = Integer.valueOf(parts[4]);
         value = Double.valueOf(parts[5]);
     }
+
+    public ValueHolder(Integer elementId, Integer vehicleId, Integer term, Integer mileage, Double value) {
+        this.elementId = elementId;
+        this.vehicleId = vehicleId;
+        this.term = term;
+        this.mileage = mileage;
+        this.value = value;
+    }
 }

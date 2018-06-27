@@ -37,7 +37,9 @@ class StringsAreEvilTests {
 
     private static Stream<Arguments> getArguments() {
         return Stream.of(Arguments.of(new BaselineParser(), "Baseline"),
-                Arguments.of(new EW1Parser(), "Easy Win 1"));
+                Arguments.of(new EW1Parser(), "Easy Win 1"),
+                Arguments.of(new EW2Parser(), "Easy Win 2"),
+                Arguments.of(new NoSplitParser(), "No Line Split"));
     }
 
     @ParameterizedTest
