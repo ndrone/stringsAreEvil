@@ -41,7 +41,8 @@ class StringsAreEvilTests {
                 Arguments.of(new EW2Parser(), "Easy Win 2"),
                 Arguments.of(new NoSplitParser(), "No Line Split"),
                 Arguments.of(new NoListParser(), "No List"),
-                Arguments.of(new ParserWithByteArray(), "byte[]"));
+                Arguments.of(new ParserWithByteArray(), "byte[]"),
+                Arguments.of(new ParserWithByteArray2(), "byte[] 2"));
     }
 
     @ParameterizedTest
@@ -53,8 +54,9 @@ class StringsAreEvilTests {
             String readLine;
             Runtime runtime = Runtime.getRuntime();
             StopWatch stopWatch = StopWatch.createStarted();
+            byte[] commaIndexes = new byte[7];
             while ((readLine = bufferedReader.readLine()) != null) {
-                lineParser.parseLine(readLine);
+                lineParser.parseLine(readLine, commaIndexes);
             }
             stopWatch.stop();
             results.add(type + ": " + stopWatch.getTime(TimeUnit.MILLISECONDS) + " milliseconds");

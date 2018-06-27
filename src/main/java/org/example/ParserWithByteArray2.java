@@ -1,9 +1,12 @@
 package org.example;
 
-public class ParserWithByteArray implements LineParser {
+public class ParserWithByteArray2 implements LineParser {
+
+    private byte[] commaIndexes;
 
     @Override
     public void parseLine(String line, byte[] commaIndexes) {
+        this.commaIndexes = commaIndexes;
         parseLine(line);
     }
 
@@ -12,7 +15,7 @@ public class ParserWithByteArray implements LineParser {
 
         if (line.startsWith("MNO")) {
 
-            byte[] commaIndexes = getCommaIndexes(line);
+            getCommaIndexes(line);
             Integer elementId = parseSectionAsIntege(commaIndexes[0] + 1, commaIndexes[1], line);
             Integer vehicleId = parseSectionAsIntege(commaIndexes[1] + 1, commaIndexes[2], line);
             Integer term = parseSectionAsIntege(commaIndexes[2] + 1, commaIndexes[3], line);
@@ -22,15 +25,13 @@ public class ParserWithByteArray implements LineParser {
         }
     }
 
-    private byte[] getCommaIndexes(String line) {
-        byte[] commaIndexes = new byte[7];
+    private void getCommaIndexes(String line) {
         int counter = 0;
         for (byte i = 0; i < line.length(); i++) {
             if (line.charAt(i) == ',') {
                 commaIndexes[counter++] = i;
             }
         }
-        return commaIndexes;
     }
 
 
